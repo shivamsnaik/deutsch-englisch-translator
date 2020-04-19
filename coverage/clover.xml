@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1587121311268" clover="3.2.0">
+  <project timestamp="1587121311269" name="All files">
+    <metrics statements="23" coveredstatements="20" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="0" elements="26" coveredelements="20" complexity="0" loc="23" ncloc="23" packages="3" files="4" classes="4"/>
+    <package name="src">
+      <metrics statements="9" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <file name="Index.tsx" path="E:\PROJECTS\REACT-NATIVE-PROJECTS\DeutschEnglischTranslate\src\Index.tsx">
+        <metrics statements="9" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="23" count="1" type="stmt"/>
+        <line num="28" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.components">
+      <metrics statements="12" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+      <file name="Body.tsx" path="E:\PROJECTS\REACT-NATIVE-PROJECTS\DeutschEnglischTranslate\src\components\Body.tsx">
+        <metrics statements="5" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="0" type="stmt"/>
+        <line num="16" count="1" type="stmt"/>
+      </file>
+      <file name="Header.tsx" path="E:\PROJECTS\REACT-NATIVE-PROJECTS\DeutschEnglischTranslate\src\components\Header.tsx">
+        <metrics statements="7" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="17" count="1" type="stmt"/>
+        <line num="34" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.styles">
+      <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="constants.tsx" path="E:\PROJECTS\REACT-NATIVE-PROJECTS\DeutschEnglischTranslate\src\styles\constants.tsx">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+      </file>
+    </package>
+  </project>
+</coverage>
