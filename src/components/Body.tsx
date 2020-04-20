@@ -201,15 +201,17 @@ const Body: FunctionComponent<Props> = () => {
           }}
         />
 
-        <ScrollView contentContainerStyle={{overflow: 'scroll', alignSelf: 'baseline', flexGrow: 1, flexDirection: 'row'}}>
+        <ScrollView horizontal contentContainerStyle={{overflow: 'scroll', alignSelf: 'baseline', flexGrow: 1, flexDirection: 'row'}}>
             <FlatList
               data={searchLog.en}
-              renderItem={({item}) => <TextView styleProperty={{textAlign: 'center', color: GREEN_COLOR}} text={item}/>}
+              keyExtractor={(item, index) => index.toString()}
+              renderItem={({item}) => <TextView key={item} styleProperty={{textAlign: 'center', color: GREEN_COLOR}} text={item}/>}
             />
 
             <FlatList
               data={searchLog.de}
-              renderItem={({item}) => <TextView styleProperty={{textAlign: 'center', color: GREEN_COLOR}} text={item}/>}
+              keyExtractor={(item, index) => index.toString()}
+              renderItem={({item}) => <TextView key={item} styleProperty={{textAlign: 'center', color: GREEN_COLOR}} text={item}/>}
             />
         </ScrollView>
       </Container>
