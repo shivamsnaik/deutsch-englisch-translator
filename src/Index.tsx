@@ -10,12 +10,12 @@ interface Props {}
 const Index: FunctionComponent<Props> = () => {
 
   return (
-    <View style={styles.container}>
+    <View style={{flex: 1, backgroundColor: BLUE_COLOR_20}}>
       <StatusBar barStyle='light-content' backgroundColor={DARK_GREEN_COLOR} />
       <Header headerText='Deutsch Englisch Translator' style={{backgroundColor: BLACK_COLOR, flex: 1, flexBasis: 0}}/>
       <View style={{flex: 15}}>
-        <ScrollView style={{backgroundColor: GREY_COLOR, padding: 2}}>
-            <Container styleProperty={[styles.center, styles.bodyContainer]}>
+        <ScrollView contentContainerStyle={{flexGrow: 1}} style={{backgroundColor: GREY_COLOR, padding: 2}}>
+            <Container styleProperty={{alignItems: 'center', flex: 1, alignSelf: 'stretch'}}>
               <Body></Body>
             </Container>
         </ScrollView>
@@ -26,7 +26,6 @@ const Index: FunctionComponent<Props> = () => {
 
 const styles = StyleSheet.create({
   center: {alignItems: 'center', flex: 1},
-  container: {flex: 1, backgroundColor: BLUE_COLOR_20},
   bodyContainer: {alignSelf: 'stretch', flex: 100}
 });
 

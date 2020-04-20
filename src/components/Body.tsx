@@ -1,9 +1,9 @@
 import React, {FunctionComponent, useState, useEffect} from 'react';
-import {TextInput, Alert, View, FlatList, ScrollView} from 'react-native';
+import {TextInput, Alert, FlatList, ScrollView} from 'react-native';
 import TextView from './TextView';
 import Container from './Container';
 import BasicButton from './BasicButton';
-import {WHITE_COLOR, BLACK_COLOR, GREY_COLOR, GREEN_COLOR, DEFAULT_FONT_FAMILY, LIGHT_GREY_COLOR, DARK_GREY_COLOR} from '../styles/constants';
+import {WHITE_COLOR, BLACK_COLOR, GREY_COLOR, GREEN_COLOR, DEFAULT_FONT_FAMILY, LIGHT_GREY_COLOR} from '../styles/constants';
 import AutoLink from 'react-native-autolink';
 import AsyncStorage from '@react-native-community/async-storage';
 
@@ -12,11 +12,11 @@ interface Props {}
 const Body: FunctionComponent<Props> = () => {
   const [englishText, setEnglishText] = useState('');
   const [deutschText, setDeutschText] = useState('');
-  const [searchLog, setSearchLog] = useState({en: [''], de: ['']});
+  const [searchLog, setSearchLog] = useState({en: ['English'], de: ['Deutsch']});
 
   const updateSearchLogData = async (englishValue: string, deutschValue: string) => {
     try {
-      const updatedLog = {en: [englishValue, ...searchLog.en], de: [deutschValue, ...searchLog.de]};
+      const updatedLog = {en: [...searchLog.en, englishValue], de: [...searchLog.de, deutschValue]};
       await AsyncStorage.setItem('log', JSON.stringify(updatedLog));
       setSearchLog(updatedLog);
     } catch (e) {
@@ -34,8 +34,8 @@ const Body: FunctionComponent<Props> = () => {
   };
 
   const clearSearchLogData = async () => {
-    try{
-      const updatedLog = {en: [], de: []};
+    try {
+      const updatedLog = {en: ['English'], de: ['Deutsch']};
       await AsyncStorage.setItem('log', JSON.stringify(updatedLog));
       setSearchLog(updatedLog);
     } catch (e) {
@@ -79,11 +79,10 @@ const Body: FunctionComponent<Props> = () => {
           alignSelf: 'stretch',
           color: WHITE_COLOR,
           backgroundColor: BLACK_COLOR,
-          margin: 2,
-          flex: 2,
+          margin: 0,
+          marginBottom: 2,
+          flex: 1,
           textAlign: 'center',
-          borderTopLeftRadius: 6,
-          borderTopRightRadius: 6,
         }}
       />
       <Container styleProperty={{flex: 2, alignSelf: 'stretch'}}>
@@ -177,33 +176,49 @@ const Body: FunctionComponent<Props> = () => {
         </Container>
       </Container>
 
-      <Container styleProperty={{flex: 1, marginTop: 2, alignItems: 'center', backgroundColor: BLACK_COLOR, alignSelf: 'stretch'}}>
+      <Container styleProperty={{flex: 5, marginTop: 2, alignItems: 'center', backgroundColor: BLACK_COLOR, alignSelf: 'stretch'}}>
         <TextView text='Logs' styleProperty={{color: GREEN_COLOR, fontFamily: DEFAULT_FONT_FAMILY}}/>
+
         <BasicButton
           buttonTitle='Clear Log'
           textStyle={{fontSize: 15, fontFamily: DEFAULT_FONT_FAMILY, padding: 2}}
           buttonStyle={{backgroundColor: LIGHT_GREY_COLOR, borderRadius: 2}}
           buttonAction={() => {
-            clearSearchLogData();
+            Alert.alert(
+              'Clear Log',
+              'The logs will be deleted permanently, continue?',
+              [
+                {
+                  text: 'Cancel',
+                  style: 'cancel'
+                },
+                {
+                  text: 'Ok',
+                  onPress: () => clearSearchLogData()
+                }
+              ]
+            );
           }}
         />
-        <ScrollView style={{overflow: 'scroll', flexDirection: 'row'}}>
-          <FlatList
-            style={{flex: 1}}
-            data={searchLog.en}
-            renderItem={({item}) => <TextView styleProperty={{textAlign: 'center', color: GREEN_COLOR}} text={item}/>}
-          />
-          <FlatList
-            style={{flex: 1}}
-            data={searchLog.de}
-            renderItem={({item}) => <TextView styleProperty={{textAlign: 'center', color: GREEN_COLOR}} text={item}/>}
-          />
+
+        <ScrollView contentContainerStyle={{overflow: 'scroll', alignSelf: 'baseline', flexGrow: 1, flexDirection: 'row'}}>
+            <FlatList
+              data={searchLog.en}
+              renderItem={({item}) => <TextView styleProperty={{textAlign: 'center', color: GREEN_COLOR}} text={item}/>}
+            />
+
+            <FlatList
+              data={searchLog.de}
+              renderItem={({item}) => <TextView styleProperty={{textAlign: 'center', color: GREEN_COLOR}} text={item}/>}
+            />
         </ScrollView>
       </Container>
 
-      <Container styleProperty={{borderBottomLeftRadius: 12, borderBottomRightRadius: 12, alignSelf: 'stretch', marginTop: 2, backgroundColor: BLACK_COLOR, flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
+      <Container styleProperty={{flex: 1, alignSelf: 'stretch', marginTop: 2, backgroundColor: BLACK_COLOR, flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
+
         <TextView text='Developed by SHIVAM NAIK' styleProperty={{color: WHITE_COLOR, fontFamily: DEFAULT_FONT_FAMILY}}/>
         <AutoLink style={{color: WHITE_COLOR, fontFamily: DEFAULT_FONT_FAMILY}} text='Link: https://github.com/shivamsnaik' linkStyle={{color: GREEN_COLOR, textDecorationLine: 'underline'}}/>
+
       </Container>
     </Container>
   );
